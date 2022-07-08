@@ -10,8 +10,14 @@
     font-size: 29px;
     font-weight: bolder;
 
-    color: darkslategray;
+    color: white;
 
-    background: linear-gradient(90deg, rgb(156, 18, 255) 0%m rgb(166, 0, 255) 100%);
+    
+    /* background-color: red ; */
+
+    background: linear-gradient(45deg, blue, red);
+
+    margin: 30px;
+    padding: 50px;
     border-radius: 4px;
 }
