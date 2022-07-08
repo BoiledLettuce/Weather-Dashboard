@@ -1,0 +1,17 @@
+#heading {
+    display: flex;
+    /* center text within object i think */
+    align-items: center; 
+
+    /* center object */
+    justify-content: center;
+
+    font-family: 'Red Hot Display', sans-serif;
+    font-size: 29px;
+    font-weight: bolder;
+
+    color: darkslategray;
+
+    background: linear-gradient(90deg, rgb(156, 18, 255) 0%m rgb(166, 0, 255) 100%);
+    border-radius: 4px;
+}
