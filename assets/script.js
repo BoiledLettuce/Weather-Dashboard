@@ -22,6 +22,8 @@ function weatherNow(city) {
         var iconURL = `https://openweathermap.org/img/w/${iconCode}.png`
 
         var currentCity = $(`
+            <h2 id="currentCity">
+                ${cityWeatherResponse.name} ${today}
 
         `);
     })
