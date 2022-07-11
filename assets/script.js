@@ -102,11 +102,15 @@ function futureWeather(lat, lon) {
                             <p>Temp: ${cityInfo.temp} C</p>
                             <p>Humidity: ${cityInfo.humidity} %</p>
                         </div>
-            `)
+                    </div>
+                </div>
+            `);
+
+            $("#fiveDay").append(futureCard);
         }
     });
 
 
 
 }
-weatherNow();
+
