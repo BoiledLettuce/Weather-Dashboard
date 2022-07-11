@@ -71,7 +71,7 @@ function weatherNow(city) {
 };
 
 
-function futureWeather(lat, lon) {
+function weatherFuture(lat, lon) {
 
     var futureURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperal&exclude=current,minutely,hourly,alerts&appid=${apiKey}`;
 
@@ -109,8 +109,76 @@ function futureWeather(lat, lon) {
             $("#fiveDay").append(futureCard);
         }
     });
-
-
-
 }
 
+
+// JQUERY Type event listener
+
+$(document).keypress(function(event) {
+    if (event.key === "Enter") {
+        // Do something
+
+        event.preventDefault();
+        
+        var city = $("#enterCity").val().trim();
+        weatherNow(city);
+        if (!searchHist.includes(city)) {
+            searchHist.push(city);
+            var searchCity = $(`
+                <li class="list-group-item">${city}</li>
+                `);
+            $("#searchHistory").append(searchCity);
+
+            
+        };
+
+
+    };
+
+    console.log(searchCity);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Random console clearing using arrowup
+
+$(document).keyup(function(event) {
+    if (event.key === "ArrowUp") {
+        // Do something
+        console.clear('');
+    }
+});
+
+// Random console error
+
+console.error('ERROR Just Kidding');
