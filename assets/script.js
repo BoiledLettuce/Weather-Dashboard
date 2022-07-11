@@ -5,7 +5,7 @@ var searchHist = [];
 
 function weatherNow(city) {
 
-    console.log("Yo Mamas House")
+    console.log("Yo Mamas House Order 69")
 
     var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiCode}`; //https://openweathermap.org/forecast5#name5
 
@@ -71,5 +71,42 @@ function weatherNow(city) {
 };
 
 
+function futureWeather(lat, lon) {
 
+    var futureURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperal&exclude=current,minutely,hourly,alerts&appid=${apiKey}`;
+
+    $.ajax({
+        url: futureURL,
+        method: "GET"
+    }).then(function(futureResponse) {
+        console.log(futureResponse);
+        $("#fiveDay").empty();
+
+        for (let i = 1; i < 6; i++) {
+            var cityInfo = {
+                data: futureResponse.daily[i].dt,
+                icon: futureResponse.daily[i].weather[0].icon,
+                temp: futureResponse.daily[i].temp.day,
+                humidity: futureResponse.daily[i].humidity
+            };
+
+            var currentDate = moment.unix(cityInfo.date).format('ll LT');
+            var iconURL = `<img src="https://openweathermap.org/img/w/${cityInfo.icon}.png" alt="${futureResponse.daily[i].weather[0].main}" />`;
+
+            var futureCard = $(`
+                <div class="pl-3">
+                    <div class="card pl-3 pt-3 mb-3 bg-primary text-light" style="width: 12rem;>
+                        <div class="card-body">
+                            <h5>${currentDate}</h5>
+                            <p>${iconURL}</p>
+                            <p>Temp: ${cityInfo.temp} C</p>
+                            <p>Humidity: ${cityInfo.humidity} %</p>
+                        </div>
+            `)
+        }
+    });
+
+
+
+}
 weatherNow();
