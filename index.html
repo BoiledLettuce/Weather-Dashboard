@@ -40,43 +40,36 @@
     </div>
 
     <!-- Search History Block -->
-    <div class="row mt-3">
-        <div class="col-12">
+    <div>
+        <aside>
     
             <ul id="searchHist" class="list-group"> SEARCH HISTORY
                 <!-- append li here li class="list-group-item"-->
             </ul>
-            <div id="weatherContent" class="col-9 pb-4 pt-4">
-                <div class="row pb-3 mr-2 ml-2">
+
+            
+            <div id="weatherContent">
+                <div>
                     <div id="cityDetail" class="col-12 border rounded px-3 py-3">
                         <!-- display currentCity here text with p-->
                     </div>
                 </div>
     
-                <div class="row pb-2 pt-1">
-                    <div class="col-12 ml-2">
-                        <h3>5-Day Forecast:</h3>
-                    </div>
-                </div>
-    
-                <div id="fiveDay" class="row pl-2">
-                    <!-- add 5 day forecast info here -->
-                </div>
+                
+            </div>
+        </aside>
+
+        <content class="fiveDayClass">
+            <div>
+                <h3>5-Day Forecast:</h3>
             </div>
     
-    
-    
-        </div>
-    
+            <div id="fiveDay">
+            <!-- add 5 day forecast info here -->
+            </div>
+        </content>
+
     </div>
-
-
-
-
-
-
-
-
 
 <!-- MOMENT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>

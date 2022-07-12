@@ -45,7 +45,7 @@ function weatherNow(city) {
             url: uviURL,
             method: "GET"
         }).then(function(uviResponse) {
-            console.log(uviResponse);
+            console.log('uviResponse = ' + uviResponse);
 
             var uvIndex = uviResponse.value;
             var uvIndexP = $(`
@@ -92,13 +92,15 @@ function weatherFuture(lat, lon) {
 
         for (let i = 1; i < 6; i++) {
             var cityInfo = {
-                data: futureResponse.daily[i].dt,
+                date: futureResponse.daily[i].dt,
                 icon: futureResponse.daily[i].weather[0].icon,
                 temp: futureResponse.daily[i].temp.day,
                 humidity: futureResponse.daily[i].humidity
             };
 
-            var currentDate = moment.unix(cityInfo.date).format('ll LT');
+            var currentDate = moment.unix(cityInfo.date).format("MM/DD/YYYY");;
+
+
             var iconURL = `<img src="https://openweathermap.org/img/w/${cityInfo.icon}.png" alt="${futureResponse.daily[i].weather[0].main}" />`;
 
             var futureCard = $(`
@@ -107,7 +109,7 @@ function weatherFuture(lat, lon) {
                         <div class="card-body">
                             <h5>${currentDate}</h5>
                             <p>${iconURL}</p>
-                            <p>Temp: ${cityInfo.temp} C</p>
+                            <p>Temp: ${cityInfo.temp} F</p>
                             <p>Humidity: ${cityInfo.humidity} %</p>
                         </div>
                     </div>
