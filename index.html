@@ -33,7 +33,7 @@
     <!-- Search Bar -->
     <div class="box"> SEARCH FOR A CITY:
         <form name="search">
-            <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+            <input type="text" id="enterCity" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
         </form>
         <i class="fas fa-search"></i>
     
@@ -42,38 +42,33 @@
     <!-- Search History Block -->
     <div class="row mt-3">
         <div class="col-12">
-
+    
             <ul id="searchHist" class="list-group"> SEARCH HISTORY
                 <!-- append li here li class="list-group-item"-->
-                <li>hello</li>
-                <li>chahucmga</li>
-                <li>brabumgas</li>
-                <li>SHAHSUMGA</li>
             </ul>
-
-        </div>
-
-        <div id="weatherContent" class="col-9 pb-4 pt-4">
-            <div class="row pb-3 mr-2 ml-2">
-                <div id="cityDetail" class="col-12 border rounded px-3 py-3">
-                    <!-- display currentCity here text with p-->
+            <div id="weatherContent" class="col-9 pb-4 pt-4">
+                <div class="row pb-3 mr-2 ml-2">
+                    <div id="cityDetail" class="col-12 border rounded px-3 py-3">
+                        <!-- display currentCity here text with p-->
+                    </div>
+                </div>
+    
+                <div class="row pb-2 pt-1">
+                    <div class="col-12 ml-2">
+                        <h3>5-Day Forecast:</h3>
+                    </div>
+                </div>
+    
+                <div id="fiveDay" class="row pl-2">
+                    <!-- add 5 day forecast info here -->
                 </div>
             </div>
-
-            <div class="row pb-2 pt-1">
-                <div class="col-12 ml-2">
-                    <h3>5-Day Forecast:</h3>
-                </div>
-            </div>
-
-            <div id="fiveDay" class="row pl-2">
-                <!-- add 5 day forecast info here -->
-            </div>
-
+    
+    
+    
         </div>
-        
+    
     </div>
-</div>
 
 
 
@@ -86,18 +81,18 @@
 <!-- MOMENT -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
-<!-- JQUERY SCRIPT -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"></script>
-
-<!-- JS -->
-<script src="./assets/script.js"></script>
+<!-- JQUERY SCRIPT //https://www.srihash.org/ -->
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha384-S58meLBGKxIiQmJ/pJ8ilvFUcGcqgla+mWH9EEKGm6i6rKxSTA2kpXJQJ8n7XK4w" crossorigin="anonymous"></script>
 
 <!-- BOOTSTRAP SCRIPT -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
     crossorigin="anonymous"></script>
+
+<!-- JS -->
+<script src="./assets/script.js"></script>
+
+
 
 
 

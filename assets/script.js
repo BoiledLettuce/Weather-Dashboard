@@ -5,13 +5,14 @@ var searchHist = [];
 
 function weatherNow(city) {
 
-    console.log("Yo Mamas House Order 69")
+    // var city = "daly city"; //remove this later
 
-    var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiCode}`; //https://openweathermap.org/forecast5#name5
+    var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiCode}`; //https://openweathermap.org/forecast5#name5
 
     $.ajax({
         url: queryURL,
-        method: "GET"
+        method: "GET",
+        
     }).then(function(cityWeatherResponse) {
         console.log(cityWeatherResponse);
 
@@ -23,7 +24,7 @@ function weatherNow(city) {
 
         var currentCity = $(`
             <h2 id="currentCity">
-                ${cityWeatherResponse.name} ${today} <img src="${iconURL}" alt="${cityWeatherResponse.weather[0].description}" />
+                ${cityWeatherResponse.name} ${todayMoment} <img src="${iconURL}" alt="${cityWeatherResponse.weather[0].description}" />
             </h2>
             <p>Temperature: ${cityWeatherResponse.main.temp} C</p>
             <p>Humidity: ${cityWeatherResponse.main.humidity} \%</p>
@@ -34,10 +35,14 @@ function weatherNow(city) {
 
         var latidude = cityWeatherResponse.coord.lat;
         var lon = cityWeatherResponse.coord.lon;
-        var uviURL = `https://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}$appid=${apiKey}`;
+        var part = 'alerts';
+        var uviURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latidude}&lon=${lon}&exclude=${part}&appid=${apiCode}`;
+
+        console.log('latitude = ' + latidude);
+        console.log('longitude = ' + lon);
 
         $.ajax({
-            url: uviQueryURL,
+            url: uviURL,
             method: "GET"
         }).then(function(uviResponse) {
             console.log(uviResponse);
@@ -45,13 +50,16 @@ function weatherNow(city) {
             var uvIndex = uviResponse.value;
             var uvIndexP = $(`
                 <p>UV Index:
-                    <span id="uvIndexColor" class="px-2 py-2 rounded">${uvIndex0}</span>
+                    <span id="uvIndexColor" class="px-2 py-2 rounded">${uvIndex}</span>
                 </p>
             `);
 
             $("#cityDetail").append(uvIndexP);
 
-            futureCondition(lat, lon);
+
+            var latidudebro = cityWeatherResponse.coord.lat; //hmm
+
+            weatherFuture(latidudebro, lon); //hmm the culprit
 
 
             if (uvIndex >= 0 && uvIndex <= 2) {
@@ -73,7 +81,7 @@ function weatherNow(city) {
 
 function weatherFuture(lat, lon) {
 
-    var futureURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperal&exclude=current,minutely,hourly,alerts&appid=${apiKey}`;
+    var futureURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperal&exclude=current,minutely,hourly,alerts&appid=${apiCode}`;
 
     $.ajax({
         url: futureURL,
@@ -120,44 +128,41 @@ $(document).keypress(function(event) {
 
         event.preventDefault();
         
-        var city = $("#enterCity").val().trim();
+        var city = $("#enterCity").val();                   //need to fix html to get these working
         weatherNow(city);
         if (!searchHist.includes(city)) {
             searchHist.push(city);
             var searchCity = $(`
                 <li class="list-group-item">${city}</li>
                 `);
-            $("#searchHistory").append(searchCity);
-
-            
+            $("#searchHist").append(searchCity);
         };
 
-
+        localStorage.setItem("city", JSON.stringify(searchHist));
+        console.log(searchHist);
     };
 
-    console.log(searchCity);
 });
 
 
 
 
+$(document).on("click", ".list-group-item", function() { //targeting stuff made from line 126
+    var cityList = $(this).text();
+    weatherNow(cityList);
+});
 
 
+$(document).ready(function() {
+    var getHistory = JSON.parse(localStorage.getItem("city"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if (getHistory !== null) {
+        var lastSearchIndex = getHistory.length - 1;
+        var lastSearchedCity = getHistory[lastSearchIndex];
+        weatherNow(lastSearchedCity);
+        console.log(`Last searched city: ${lastSearchedCity}`);
+    }
+});
 
 
 
@@ -175,7 +180,7 @@ $(document).keypress(function(event) {
 $(document).keyup(function(event) {
     if (event.key === "ArrowUp") {
         // Do something
-        console.clear('');
+        console.clear();
     }
 });
 
