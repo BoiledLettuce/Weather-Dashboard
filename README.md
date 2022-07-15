@@ -2,7 +2,7 @@
 
 ## Overview
 
-A useful City Weather Dashboard to help plan for trips 5 day's ahead.
+A useful City Weather Dashboard to help plan for trips up to 5 days in advance.
 
 **Note:** CSS Needs to be updated for better visuals.
 
